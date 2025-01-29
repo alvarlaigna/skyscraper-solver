@@ -24,7 +24,7 @@ A modern web application for solving skyscraper puzzles. Built with React, TypeS
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/skyscraper-solver.git
+git clone https://github.com/alvarlaigna/skyscraper-solver.git
 
 # Navigate to project directory
 cd skyscraper-solver
