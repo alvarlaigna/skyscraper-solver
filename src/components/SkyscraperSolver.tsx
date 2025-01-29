@@ -369,48 +369,51 @@ export default function SkyscraperSolver() {
       aria-label="Skyscrapers Solver"
     >
       <Card className="w-full max-w-4xl shadow-lg">
-        <CardContent className="p-6">
-          <div className="flex flex-col items-center space-y-6">
+        <CardContent className="p-4 sm:p-6">
+          <div className="w-full flex flex-col items-center space-y-4 sm:space-y-6">
             <h1 className="text-2xl font-bold text-foreground">Skyscraper Solver</h1>
 
-            <div className="flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Label htmlFor="rows">Rows:</Label>
-                <Input
-                  id="rows"
-                  type="number"
-                  min={2}
-                  max={9}
-                  value={rows}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setRows(Math.min(9, Math.max(2, parseInt(e.target.value) || 2)))
-                  }
-                  className="w-20"
-                />
-              </div>
+            <div className="w-full max-w-fit flex items-center justify-between gap-2 sm:gap-4">
+              <div className="flex items-center gap-2 sm:gap-4">
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <Label htmlFor="rows" className="min-w-fit text-base">Rows:</Label>
+                  <Input
+                    id="rows"
+                    type="number"
+                    min={2}
+                    max={9}
+                    value={rows}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setRows(Math.min(9, Math.max(2, parseInt(e.target.value) || 2)))
+                    }
+                    className="w-14 text-base"
+                  />
+                </div>
 
-              <div className="flex items-center gap-2">
-                <Label htmlFor="cols">Columns:</Label>
-                <Input
-                  id="cols"
-                  type="number"
-                  min={2}
-                  max={9}
-                  value={cols}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setCols(Math.min(9, Math.max(2, parseInt(e.target.value) || 2)))
-                  }
-                  className="w-20"
-                />
-              </div>
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <Label htmlFor="cols" className="min-w-fit text-base">Cols:</Label>
+                  <Input
+                    id="cols"
+                    type="number"
+                    min={2}
+                    max={9}
+                    value={cols}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setCols(Math.min(9, Math.max(2, parseInt(e.target.value) || 2)))
+                    }
+                    className="w-14 text-base"
+                  />
+                </div>
 
-              <Button
-                variant="outline"
-                onClick={() => setShowControls(!showControls)}
-                aria-expanded={showControls}
-              >
-                {showControls ? "Hide Controls" : "Show Controls"}
-              </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowControls(!showControls)}
+                  aria-expanded={showControls}
+                  className="text-base px-3 h-9"
+                >
+                  {showControls ? "Hide Controls" : "Show Controls"}
+                </Button>
+              </div>
             </div>
 
             {showControls && (
@@ -418,7 +421,7 @@ export default function SkyscraperSolver() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="w-full p-4 bg-muted rounded-lg"
+                className="w-full max-w-fit p-4 bg-muted rounded-lg"
               >
                 <div className="space-y-2 text-sm text-muted-foreground">
                   <p>• Use arrow keys to navigate between cells</p>
@@ -429,16 +432,18 @@ export default function SkyscraperSolver() {
               </motion.div>
             )}
 
-            <div className="flex flex-wrap justify-center gap-2">
-              <Button onClick={handleSolve} disabled={isSolved}>
-                Solve Puzzle
-              </Button>
-              <Button variant="secondary" onClick={handleReset}>
-                Reset
-              </Button>
-              <Button variant="outline" onClick={handleCopyToClipboard}>
-                Copy to Clipboard
-              </Button>
+            <div className="w-full max-w-fit flex justify-center gap-2">
+              <div className="flex items-center gap-2">
+                <Button onClick={handleSolve} disabled={isSolved} className="text-base px-4 h-9">
+                  Solve Puzzle
+                </Button>
+                <Button variant="secondary" onClick={handleReset} className="text-base px-4 h-9">
+                  Reset
+                </Button>
+                <Button variant="outline" onClick={handleCopyToClipboard} className="text-base px-4 h-9">
+                  Copy to Clipboard
+                </Button>
+              </div>
             </div>
 
             {statusMessage && (
@@ -447,33 +452,33 @@ export default function SkyscraperSolver() {
               </p>
             )}
 
-            <div className="w-full overflow-x-auto">
-              <div className="inline-block min-w-full align-middle">
+            <div className="w-full max-w-fit overflow-x-auto pb-4">
+              <div className="inline-block align-middle">
                 <table
-                  className="min-w-full border-separate border-spacing-0"
+                  className="border-separate border-spacing-0"
                   role="grid"
                   aria-label="Skyscraper puzzle grid"
                 >
                   <thead>
                     <tr>
-                      <th className="w-12" />
+                      <th className="w-14 sm:w-16" />
                       {colClues[0].map((clue, colIdx) => (
-                        <th key={colIdx} className="p-1">
+                        <th key={colIdx} className="p-1 w-8 sm:w-12 md:w-14">
                           <div className="flex items-center justify-center gap-1">
-                            <Eye className="w-4 h-4" aria-hidden="true" />
+                            <Eye className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
                             <Input
                               id={`col-top-${colIdx}`}
                               type="text"
                               value={clue.value}
                               onChange={(e) => handleColClueChange(0, colIdx, e.target.value)}
                               onKeyDown={(e) => handleCellKeyDown(e, 0, colIdx, 'col-top')}
-                              className="w-12 text-center hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
+                              className="w-full h-7 sm:h-8 text-center p-0 text-base hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
                               aria-label={`Top clue for column ${colIdx + 1}`}
                             />
                           </div>
                         </th>
                       ))}
-                      <th className="w-12" />
+                      <th className="w-14 sm:w-16" />
                     </tr>
                   </thead>
 
@@ -482,14 +487,14 @@ export default function SkyscraperSolver() {
                       <tr key={rowIdx}>
                         <td className="p-1">
                           <div className="flex items-center justify-center gap-1">
-                            <Eye className="w-4 h-4" aria-hidden="true" />
+                            <Eye className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
                             <Input
                               id={`row-left-${rowIdx}`}
                               type="text"
                               value={rowClues[0][rowIdx].value}
                               onChange={(e) => handleRowClueChange(0, rowIdx, e.target.value)}
                               onKeyDown={(e) => handleCellKeyDown(e, rowIdx, 0, 'row-left')}
-                              className="w-12 text-center hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
+                              className="w-full h-7 sm:h-8 text-center p-0 text-base hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
                               aria-label={`Left clue for row ${rowIdx + 1}`}
                             />
                           </div>
@@ -498,7 +503,7 @@ export default function SkyscraperSolver() {
                         {row.map((cell, colIdx) => (
                           <td
                             key={colIdx}
-                            className="p-0 border border-border"
+                            className="p-0 border border-border w-8 h-8 sm:w-12 sm:h-12 md:w-14 md:h-14"
                           >
                             <Input
                               id={`cell-${rowIdx}-${colIdx}`}
@@ -507,7 +512,7 @@ export default function SkyscraperSolver() {
                               onChange={(e) => handleCellChange(rowIdx, colIdx, e.target.value)}
                               onKeyDown={(e) => handleCellKeyDown(e, rowIdx, colIdx)}
                               disabled={isSolved}
-                              className="w-full h-12 text-center border-0 rounded-none hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
+                              className="w-full h-full text-center p-0 border-0 rounded-none text-base hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
                               aria-label={`Cell at row ${rowIdx + 1}, column ${colIdx + 1}`}
                             />
                           </td>
@@ -515,14 +520,14 @@ export default function SkyscraperSolver() {
 
                         <td className="p-1">
                           <div className="flex items-center justify-center gap-1">
-                            <EyeOff className="w-4 h-4" aria-hidden="true" />
+                            <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
                             <Input
                               id={`row-right-${rowIdx}`}
                               type="text"
                               value={rowClues[1][rowIdx].value}
                               onChange={(e) => handleRowClueChange(1, rowIdx, e.target.value)}
                               onKeyDown={(e) => handleCellKeyDown(e, rowIdx, cols - 1, 'row-right')}
-                              className="w-12 text-center hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
+                              className="w-full h-7 sm:h-8 text-center p-0 text-base hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
                               aria-label={`Right clue for row ${rowIdx + 1}`}
                             />
                           </div>
@@ -533,24 +538,24 @@ export default function SkyscraperSolver() {
 
                   <tfoot>
                     <tr>
-                      <td className="w-12" />
+                      <td className="w-14 sm:w-16" />
                       {colClues[1].map((clue, colIdx) => (
-                        <td key={colIdx} className="p-1">
+                        <td key={colIdx} className="p-1 w-8 sm:w-12 md:w-14">
                           <div className="flex items-center justify-center gap-1">
-                            <EyeOff className="w-4 h-4" aria-hidden="true" />
+                            <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
                             <Input
                               id={`col-bottom-${colIdx}`}
                               type="text"
                               value={clue.value}
                               onChange={(e) => handleColClueChange(1, colIdx, e.target.value)}
                               onKeyDown={(e) => handleCellKeyDown(e, rows - 1, colIdx, 'col-bottom')}
-                              className="w-12 text-center hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
+                              className="w-full h-7 sm:h-8 text-center p-0 text-base hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
                               aria-label={`Bottom clue for column ${colIdx + 1}`}
                             />
                           </div>
                         </td>
                       ))}
-                      <td className="w-12" />
+                      <td className="w-14 sm:w-16" />
                     </tr>
                   </tfoot>
                 </table>
