@@ -463,16 +463,16 @@ export default function SkyscraperSolver() {
                     <tr>
                       <th className="w-14 sm:w-16" />
                       {colClues[0].map((clue, colIdx) => (
-                        <th key={colIdx} className="p-1 w-8 sm:w-12 md:w-14">
-                          <div className="flex items-center justify-center gap-1">
-                            <Eye className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
+                        <th key={colIdx} className="p-1 w-7 sm:w-10 md:w-12">
+                          <div className="relative w-full">
+                            <Eye className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground/30 pointer-events-none" aria-hidden="true" />
                             <Input
                               id={`col-top-${colIdx}`}
                               type="text"
                               value={clue.value}
                               onChange={(e) => handleColClueChange(0, colIdx, e.target.value)}
                               onKeyDown={(e) => handleCellKeyDown(e, 0, colIdx, 'col-top')}
-                              className="w-full h-7 sm:h-8 text-center p-0 text-base hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
+                              className="w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 text-center p-0 text-base hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
                               aria-label={`Top clue for column ${colIdx + 1}`}
                             />
                           </div>
@@ -486,15 +486,15 @@ export default function SkyscraperSolver() {
                     {cells.map((row, rowIdx) => (
                       <tr key={rowIdx}>
                         <td className="p-1">
-                          <div className="flex items-center justify-center gap-1">
-                            <Eye className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
+                          <div className="relative w-full">
+                            <Eye className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground/30 pointer-events-none" aria-hidden="true" />
                             <Input
                               id={`row-left-${rowIdx}`}
                               type="text"
                               value={rowClues[0][rowIdx].value}
                               onChange={(e) => handleRowClueChange(0, rowIdx, e.target.value)}
                               onKeyDown={(e) => handleCellKeyDown(e, rowIdx, 0, 'row-left')}
-                              className="w-full h-7 sm:h-8 text-center p-0 text-base hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
+                              className="w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 text-center p-0 text-base hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
                               aria-label={`Left clue for row ${rowIdx + 1}`}
                             />
                           </div>
@@ -503,7 +503,7 @@ export default function SkyscraperSolver() {
                         {row.map((cell, colIdx) => (
                           <td
                             key={colIdx}
-                            className="p-0 border border-border w-8 h-8 sm:w-12 sm:h-12 md:w-14 md:h-14"
+                            className="p-0 border border-border w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12"
                           >
                             <Input
                               id={`cell-${rowIdx}-${colIdx}`}
@@ -519,15 +519,15 @@ export default function SkyscraperSolver() {
                         ))}
 
                         <td className="p-1">
-                          <div className="flex items-center justify-center gap-1">
-                            <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
+                          <div className="relative w-full">
+                            <EyeOff className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground/30 pointer-events-none" aria-hidden="true" />
                             <Input
                               id={`row-right-${rowIdx}`}
                               type="text"
                               value={rowClues[1][rowIdx].value}
                               onChange={(e) => handleRowClueChange(1, rowIdx, e.target.value)}
                               onKeyDown={(e) => handleCellKeyDown(e, rowIdx, cols - 1, 'row-right')}
-                              className="w-full h-7 sm:h-8 text-center p-0 text-base hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
+                              className="w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 text-center p-0 text-base hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
                               aria-label={`Right clue for row ${rowIdx + 1}`}
                             />
                           </div>
@@ -540,16 +540,16 @@ export default function SkyscraperSolver() {
                     <tr>
                       <td className="w-14 sm:w-16" />
                       {colClues[1].map((clue, colIdx) => (
-                        <td key={colIdx} className="p-1 w-8 sm:w-12 md:w-14">
-                          <div className="flex items-center justify-center gap-1">
-                            <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
+                        <td key={colIdx} className="p-1 w-7 sm:w-10 md:w-12">
+                          <div className="relative w-full">
+                            <EyeOff className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground/30 pointer-events-none" aria-hidden="true" />
                             <Input
                               id={`col-bottom-${colIdx}`}
                               type="text"
                               value={clue.value}
                               onChange={(e) => handleColClueChange(1, colIdx, e.target.value)}
                               onKeyDown={(e) => handleCellKeyDown(e, rows - 1, colIdx, 'col-bottom')}
-                              className="w-full h-7 sm:h-8 text-center p-0 text-base hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
+                              className="w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 text-center p-0 text-base hover:bg-muted/50 focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:bg-muted/50 transition-colors"
                               aria-label={`Bottom clue for column ${colIdx + 1}`}
                             />
                           </div>
