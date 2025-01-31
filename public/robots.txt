@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://skyscraper-solver.vercel.app/sitemap.xml 
+Sitemap: https://skyscraper-solver.houseoflaigna.com/sitemap.xml 
