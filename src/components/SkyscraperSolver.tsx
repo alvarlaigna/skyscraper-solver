@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff } from "lucide-react";
 
 // Types
 interface CellData {
@@ -150,6 +149,31 @@ function solvePuzzle(
   
   return false;
 }
+
+// Arrow SVG Components
+const ArrowDown = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground/30 pointer-events-none" aria-hidden="true">
+    <path d="M12 8v8M8 12l4 4 4-4"/>
+  </svg>
+);
+
+const ArrowUp = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground/30 pointer-events-none" aria-hidden="true">
+    <path d="M12 16V8M8 12l4-4 4 4"/>
+  </svg>
+);
+
+const ArrowRight = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground/30 pointer-events-none" aria-hidden="true">
+    <path d="M8 12h8M12 8l4 4-4 4"/>
+  </svg>
+);
+
+const ArrowLeft = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground/30 pointer-events-none" aria-hidden="true">
+    <path d="M16 12H8M12 8l-4 4 4 4"/>
+  </svg>
+);
 
 export default function SkyscraperSolver() {
   const [rows, setRows] = useState(5);
@@ -464,8 +488,8 @@ export default function SkyscraperSolver() {
                       <th className="w-14 sm:w-16" />
                       {colClues[0].map((clue, colIdx) => (
                         <th key={colIdx} className="p-1 w-7 sm:w-10 md:w-12">
-                          <div className="relative w-full">
-                            <Eye className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground/30 pointer-events-none" aria-hidden="true" />
+                          <div className="relative w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12">
+                            <ArrowDown />
                             <Input
                               id={`col-top-${colIdx}`}
                               type="text"
@@ -486,8 +510,8 @@ export default function SkyscraperSolver() {
                     {cells.map((row, rowIdx) => (
                       <tr key={rowIdx}>
                         <td className="p-1">
-                          <div className="relative w-full">
-                            <Eye className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground/30 pointer-events-none" aria-hidden="true" />
+                          <div className="relative w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12">
+                            <ArrowRight />
                             <Input
                               id={`row-left-${rowIdx}`}
                               type="text"
@@ -519,8 +543,8 @@ export default function SkyscraperSolver() {
                         ))}
 
                         <td className="p-1">
-                          <div className="relative w-full">
-                            <EyeOff className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground/30 pointer-events-none" aria-hidden="true" />
+                          <div className="relative w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12">
+                            <ArrowLeft />
                             <Input
                               id={`row-right-${rowIdx}`}
                               type="text"
@@ -541,8 +565,8 @@ export default function SkyscraperSolver() {
                       <td className="w-14 sm:w-16" />
                       {colClues[1].map((clue, colIdx) => (
                         <td key={colIdx} className="p-1 w-7 sm:w-10 md:w-12">
-                          <div className="relative w-full">
-                            <EyeOff className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground/30 pointer-events-none" aria-hidden="true" />
+                          <div className="relative w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12">
+                            <ArrowUp />
                             <Input
                               id={`col-bottom-${colIdx}`}
                               type="text"
